@@ -16,7 +16,7 @@ const TimelineCard: FunctionComponent<TimelineCardProps> = ({ timelineEvent }) =
   const { slug, title, date, place, tags, shortText } = timelineEvent
 
   return (
-    <Link href={`/timeline/${slug}` + 'a'} className={styles.card}>
+    <Link href={`/timeline/${slug}`} className={styles.card}>
       <div>
         <h2>
           {title}

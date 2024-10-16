@@ -11,6 +11,10 @@
   top: 100%;
   right: 0;
 
+  padding: 0 0.5rem;
+
+  background-color: white;
+
   &.opened {
     display: block;
   }
@@ -21,5 +25,15 @@
 }
 
 .option {
-  display: block;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 4rem;
+  height: 1rem;
+  margin: 0.5rem 0;
+
+  svg {
+    height: 1rem;
+  }
 }
