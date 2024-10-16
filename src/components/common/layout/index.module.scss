@@ -1,0 +1,8 @@
+@import '@/styles/variables.scss';
+
+
+.pageBody {
+  width: $page-content-width;
+  min-height: calc(100vh - $page-header-heigth - $page-footer-height);
+  margin: 0 auto;
+}

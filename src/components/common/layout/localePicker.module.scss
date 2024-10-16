@@ -1,0 +1,25 @@
+.picker {
+  position: relative;
+}
+
+.icon {
+  cursor: pointer;
+}
+
+.options {
+  position: absolute;
+  top: 100%;
+  right: 0;
+
+  &.opened {
+    display: block;
+  }
+
+  &.closed {
+    display: none;
+  }
+}
+
+.option {
+  display: block;
+}

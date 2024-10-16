@@ -1,0 +1,29 @@
+@import '@/styles/variables.scss';
+
+
+.header {
+  background-color: $header-footer-color;
+}
+
+.content {
+  width: $page-content-width;
+  height: $page-header-heigth;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}

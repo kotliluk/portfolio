@@ -1,0 +1,17 @@
+@import '@/styles/variables.scss';
+
+
+.footer {
+  background-color: $header-footer-color;
+}
+
+.content {
+  width: $page-content-width;
+  height: $page-footer-height;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
