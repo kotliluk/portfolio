@@ -3,6 +3,7 @@ import { usePathname } from 'next/navigation'
 import { FunctionComponent } from 'react'
 
 import styles from './localePicker.module.scss'
+import GlobeIcon from '@/components/common/icons/globe-20.svg'
 import { useLocale } from '@/logic/hooks/useLocale'
 import { useOnClickOutside } from '@/logic/hooks/useOnClickOutside'
 import { useToggle } from '@/logic/hooks/useToggle'
@@ -11,7 +12,7 @@ import { useToggle } from '@/logic/hooks/useToggle'
 const LOCALE_PICKER_ID = 'locale-picker'
 
 const LocalePicker: FunctionComponent = () => {
-  const { locale, locales } = useLocale()
+  const { locales } = useLocale()
   const pathname = usePathname()
   const [opened, toggleOpened, setOpened] = useToggle(false)
 
@@ -19,7 +20,9 @@ const LocalePicker: FunctionComponent = () => {
 
   return (
     <div id={LOCALE_PICKER_ID} className={styles.picker}>
-      <span className={styles.icon} onClick={toggleOpened}>{locale}</span>
+      <span className={styles.icon} onClick={toggleOpened}>
+        <GlobeIcon />
+      </span>
       <div className={`${styles.options} ${opened ? styles.opened : styles.closed}`}>
         {locales.map((l) => (
           <Link

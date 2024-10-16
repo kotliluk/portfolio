@@ -17,8 +17,16 @@
   font-size: 0.8rem;
 }
 
+.withIcon {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 0.1rem;
+}
+
 .tag {
   margin-right: 0.5rem;
+  font-weight: bold;
 }
 
 .shortText {
