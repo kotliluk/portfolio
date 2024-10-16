@@ -1,10 +1,11 @@
-import { parseTimelineEvent, TimelineEvent } from '@/types/timelineEvent'
+import { GetStaticProps } from 'next'
+import { FunctionComponent } from 'react'
+
+import Layout from '@/components/common/layout'
 import TimelineCard from '@/components/timeline/card'
 import { getEntries } from '@/logic/contentful'
 import { Locale } from '@/types/locale'
-import { GetStaticProps } from 'next'
-import { FunctionComponent } from 'react'
-import Layout from '@/components/common/layout'
+import { TimelineEvent, parseTimelineEvent } from '@/types/timelineEvent'
 
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
@@ -30,7 +31,7 @@ const Timeline: FunctionComponent<TimelineProps> = ({ timelineEvents }: Timeline
         <h1>
           Timeline
         </h1>
-        
+
         {timelineEvents.map((event) => (
           <TimelineCard key={event.id} timelineEvent={event} />
         ))}
@@ -39,4 +40,4 @@ const Timeline: FunctionComponent<TimelineProps> = ({ timelineEvents }: Timeline
   )
 }
 
-export default Timeline;
+export default Timeline

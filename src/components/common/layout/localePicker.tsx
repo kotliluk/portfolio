@@ -1,10 +1,11 @@
-import { useLocale } from "@/logic/hooks/useLocale"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { FunctionComponent } from "react"
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { FunctionComponent } from 'react'
+
 import styles from './localePicker.module.scss'
-import { useToggle } from "@/logic/hooks/useToggle"
-import { useOnClickOutside } from "@/logic/hooks/useOnClickOutside"
+import { useLocale } from '@/logic/hooks/useLocale'
+import { useOnClickOutside } from '@/logic/hooks/useOnClickOutside'
+import { useToggle } from '@/logic/hooks/useToggle'
 
 
 const LOCALE_PICKER_ID = 'locale-picker'
@@ -32,7 +33,7 @@ const LocalePicker: FunctionComponent = () => {
         ))}
       </div>
     </div>
-  );
+  )
 }
- 
-export default LocalePicker;
+
+export default LocalePicker

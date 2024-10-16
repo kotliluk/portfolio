@@ -1,7 +1,8 @@
-import Link from "next/link"
-import { FunctionComponent } from "react"
-import LocalePicker from "./localePicker"
+import Link from 'next/link'
+import { FunctionComponent } from 'react'
+
 import styles from './header.module.scss'
+import LocalePicker from './localePicker'
 
 
 const Header: FunctionComponent = () => {

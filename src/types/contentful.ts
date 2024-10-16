@@ -1,6 +1,7 @@
-import { fromFull, FullLocale, Locale } from './locale'
-import { Entry } from 'contentful'
 import { Document } from '@contentful/rich-text-types'
+import { Entry } from 'contentful'
+
+import { FullLocale, Locale, fromFull } from './locale'
 
 
 export type ContentfulEntry = Entry

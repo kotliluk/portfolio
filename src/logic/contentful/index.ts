@@ -1,6 +1,7 @@
+import { createClient } from 'contentful'
+
 import { ObjectParser, SysExtra } from '@/types/contentful'
 import { DEFAULT_LOCALE, Locale, toFull } from '@/types/locale'
-import { createClient } from 'contentful'
 
 
 export const contentfulClient = createClient({

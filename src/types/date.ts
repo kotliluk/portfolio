@@ -1,4 +1,4 @@
-import { DateStringArtificialExtension } from "./artificialTypeExtension";
+import { DateStringArtificialExtension } from './artificialTypeExtension'
 
 
 /**

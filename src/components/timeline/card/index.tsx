@@ -1,10 +1,9 @@
-import { FunctionComponent } from "react";
-
-import { TimelineEvent } from "@/types/timelineEvent";
-import Link from "next/link";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
+import Link from 'next/link'
+import { FunctionComponent } from 'react'
 
 import styles from './index.module.scss'
+import { TimelineEvent } from '@/types/timelineEvent'
 
 
 type TimelineCardProps = {
@@ -15,7 +14,7 @@ const TimelineCard: FunctionComponent<TimelineCardProps> = ({ timelineEvent }) =
   const { slug, title, date, place, tags, shortText } = timelineEvent
 
   return (
-    <Link href={`/timeline/${slug}`} className={styles.card}>
+    <Link href={`/timeline/${slug}` + 'a'} className={styles.card}>
       <div>
         <h2>
           {title}
@@ -34,13 +33,13 @@ const TimelineCard: FunctionComponent<TimelineCardProps> = ({ timelineEvent }) =
             ))}
           </span>
         </div>
-        
+
         <div className={styles.shortText}>
           {documentToReactComponents(shortText)}
         </div>
       </div>
     </Link>
-  );
+  )
 }
- 
-export default TimelineCard;
+
+export default TimelineCard

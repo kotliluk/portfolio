@@ -5,6 +5,6 @@ const nextConfig = {
     locales: ['cs', 'en'],
     defaultLocale: 'cs',
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig

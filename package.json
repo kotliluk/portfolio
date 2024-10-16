@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "npx eslint ./src",
+    "lint-fix": "npx eslint ./src --fix"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.22.11",
@@ -16,12 +17,18 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@eslint/js": "^9.12.0",
+    "@stylistic/eslint-plugin": "^2.9.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "eslint": "^8",
+    "eslint": "^9.12.0",
     "eslint-config-next": "14.2.15",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-react": "^7.37.1",
+    "globals": "^15.11.0",
     "sass": "^1.79.5",
-    "typescript": "^5"
+    "typescript": "^5",
+    "typescript-eslint": "^8.9.0"
   }
 }

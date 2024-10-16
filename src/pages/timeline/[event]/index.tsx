@@ -1,8 +1,9 @@
-import { getEntries } from '@/logic/contentful'
-import { parseTimelineEvent, TimelineEvent as TimelineEventT } from '@/types/timelineEvent'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { FunctionComponent } from 'react'
+
+import { getEntries } from '@/logic/contentful'
 import { Locale } from '@/types/locale'
+import { TimelineEvent as TimelineEventT, parseTimelineEvent } from '@/types/timelineEvent'
 
 
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
@@ -39,13 +40,11 @@ type TimelineEventProps = {
 }
 
 const TimelineEvent: FunctionComponent<TimelineEventProps> = ({ timelineEvent }) => {
-  console.log('timelineEvent', timelineEvent);
-  
   return (
     <div>
       {timelineEvent.title}
     </div>
-  );
+  )
 }
- 
-export default TimelineEvent;
+
+export default TimelineEvent

@@ -1,5 +1,6 @@
-import { Locale } from "@/types/locale"
-import { useRouter } from "next/router"
+import { useRouter } from 'next/router'
+
+import { Locale } from '@/types/locale'
 
 
 export type UseLocaleResult = {

@@ -1,9 +1,10 @@
-import { FunctionComponent, ReactNode } from "react";
-import PageHead from "./head";
-import { DEFAULT_PAGE_TITLE } from "@/logic/constants";
-import Header from "./header";
+import { FunctionComponent, ReactNode } from 'react'
+
+import Footer from './footer'
+import PageHead from './head'
+import Header from './header'
 import styles from './index.module.scss'
-import Footer from "./footer";
+import { DEFAULT_PAGE_TITLE } from '@/logic/constants'
 
 
 type LayoutProps = {
@@ -22,7 +23,7 @@ const Layout: FunctionComponent<LayoutProps> = ({ title, exactTitle, metaDescrip
         title={title}
         metaDescription={metaDescription ?? titleToUse}
       />
-      
+
       <Header />
 
       <main className={styles.pageBody}>
@@ -31,7 +32,7 @@ const Layout: FunctionComponent<LayoutProps> = ({ title, exactTitle, metaDescrip
 
       <Footer />
     </>
-  );
+  )
 }
- 
-export default Layout;
+
+export default Layout

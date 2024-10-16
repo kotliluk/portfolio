@@ -1,5 +1,5 @@
-import { ContentfulRichText, parseObject, WithSys, ContentfulEntry, ObjectParser } from "./contentful"
-import { DateString } from "./date"
+import { ContentfulEntry, ContentfulRichText, ObjectParser, WithSys, parseObject } from './contentful'
+import { DateString } from './date'
 
 
 export type TimelineEventType = 'sport' | 'technology'

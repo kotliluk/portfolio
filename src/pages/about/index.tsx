@@ -1,5 +1,6 @@
-import Layout from "@/components/common/layout";
-import { FunctionComponent } from "react";
+import { FunctionComponent } from 'react'
+
+import Layout from '@/components/common/layout'
 
 
 const About: FunctionComponent = () => {
@@ -9,7 +10,7 @@ const About: FunctionComponent = () => {
     >
       About
     </Layout>
-  );
+  )
 }
 
-export default About;
+export default About
