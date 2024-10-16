@@ -1,4 +1,4 @@
-import { WithSys } from "./contentful"
+import { ContentfulRichText, parseObject, WithSys, ContentfulEntry, ObjectParser } from "./contentful"
 import { DateString } from "./date"
 
 
@@ -11,8 +11,12 @@ export type BaseTimelineEvent = {
   date: DateString,
   place: string,
   tags: string[],
-  // shortText: [Object],
-  // longText: [Object],
+  shortText: ContentfulRichText,
+  longText: ContentfulRichText,
 }
 
 export type TimelineEvent = WithSys<BaseTimelineEvent>
+
+export const parseTimelineEvent: ObjectParser<TimelineEvent> = (entry: ContentfulEntry): TimelineEvent => {
+  return parseObject(entry, (raw) => raw as BaseTimelineEvent)
+}

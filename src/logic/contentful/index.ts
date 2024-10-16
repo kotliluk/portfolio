@@ -1,4 +1,4 @@
-import { parseObject, SysExtra } from '@/types/contentful'
+import { ObjectParser, SysExtra } from '@/types/contentful'
 import { DEFAULT_LOCALE, Locale, toFull } from '@/types/locale'
 import { createClient } from 'contentful'
 
@@ -10,9 +10,10 @@ export const contentfulClient = createClient({
 
 export const getEntries = async <T extends SysExtra> (
   entryType: string,
+  parseObject: ObjectParser<T>,
   locale: Locale = DEFAULT_LOCALE,
   search: Record<string, unknown> = {},
 ): Promise<T[]> => {
   const res = await contentfulClient.getEntries({ content_type: entryType, locale: toFull(locale), ...search })
-  return res.items.map(parseObject<T>)
+  return res.items.map(parseObject)
 }

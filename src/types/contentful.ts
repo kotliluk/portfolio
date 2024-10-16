@@ -1,6 +1,9 @@
 import { fromFull, FullLocale, Locale } from './locale'
-import { Entry, Metadata, EntrySys } from 'contentful'
+import { Entry } from 'contentful'
+import { Document } from '@contentful/rich-text-types'
 
+
+export type ContentfulEntry = Entry
 
 export type SysExtra = {
   id: string,
@@ -9,16 +12,18 @@ export type SysExtra = {
 
 export type WithSys<T> = T & SysExtra
 
-export const parseObject = <T extends SysExtra> (entry: Entry): T => {
+export type WithoutSys<T> = Omit<T, keyof SysExtra>
+
+export type FieldsParser<T> = (raw: unknown) => T
+
+export type ObjectParser<T> = (entry: ContentfulEntry) => T
+
+export const parseObject = <T> (entry: ContentfulEntry, fieldsParser: FieldsParser<WithoutSys<T>>): T => {
   return {
-    ...entry.fields,
+    ...fieldsParser(entry.fields),
     id: entry.sys.id,
     locale: fromFull(entry.sys.locale as FullLocale),
   } as T
 }
 
-export type ContentfulObject<T> = {
-  metadata: Metadata,
-  sys: EntrySys,
-  fields: T,
-}
+export type ContentfulRichText = Document
