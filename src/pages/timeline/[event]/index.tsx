@@ -1,6 +1,10 @@
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { FunctionComponent } from 'react'
 
+import styles from './index.module.scss'
+import Layout from '@/components/common/layout'
+import InfoBarCard from '@/components/timeline/infoBar'
 import { getEntries } from '@/logic/contentful'
 import { Locale } from '@/types/locale'
 import { TimelineEvent as TimelineEventT, parseTimelineEvent } from '@/types/timelineEvent'
@@ -40,10 +44,22 @@ type TimelineEventProps = {
 }
 
 const TimelineEvent: FunctionComponent<TimelineEventProps> = ({ timelineEvent }) => {
+  const { title, longText } = timelineEvent
+
   return (
-    <div>
-      {timelineEvent.title}
-    </div>
+    <Layout title='Timeline'>
+      <div className={styles.body}>
+        <h1>
+          {title}
+        </h1>
+
+        <InfoBarCard timelineEvent={timelineEvent} />
+
+        <div className={styles.longText}>
+          {documentToReactComponents(longText)}
+        </div>
+      </div>
+    </Layout>
   )
 }
 

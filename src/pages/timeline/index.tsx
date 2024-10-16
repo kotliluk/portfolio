@@ -1,6 +1,7 @@
 import { GetStaticProps } from 'next'
 import { FunctionComponent } from 'react'
 
+import styles from './index.module.scss'
 import Layout from '@/components/common/layout'
 import TimelineCard from '@/components/timeline/card'
 import { getEntries } from '@/logic/contentful'
@@ -27,7 +28,7 @@ type TimelineProps = {
 const Timeline: FunctionComponent<TimelineProps> = ({ timelineEvents }: TimelineProps) => {
   return (
     <Layout title='Timeline'>
-      <div>
+      <div className={styles.body}>
         <h1>
           Timeline
         </h1>
