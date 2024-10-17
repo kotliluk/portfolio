@@ -1,0 +1,15 @@
+.picker {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.type {
+  display: block;
+
+  cursor: pointer;
+
+  &.selected {
+    text-decoration: underline;
+  }
+}
