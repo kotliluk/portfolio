@@ -33,6 +33,15 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const res = await getEntries('timelineEvent', parseTimelineEvent, locale as Locale, { 'fields.slug': params?.event })
 
+  if (res.length === 0) {
+    return {
+      redirect: {
+        destination: '/timeline',
+        permanent: false,
+      },
+    }
+  }
+
   return {
     props: {
       timelineEvent: res[0] ?? null,
