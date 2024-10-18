@@ -6,6 +6,7 @@ import styles from './index.module.scss'
 import Layout from '@/components/common/layout'
 import InfoBarCard from '@/components/timeline/infoBar'
 import { getEntries } from '@/logic/contentful'
+// import { ContentfulRichText } from '@/types/contentful'
 import { Locale } from '@/types/locale'
 import { TimelineEvent as TimelineEventT, parseTimelineEvent } from '@/types/timelineEvent'
 
@@ -25,7 +26,7 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
       },
       locale: item.locale,
     })),
-    fallback: false,
+    fallback: true,
   }
 }
 
@@ -34,17 +35,53 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 
   return {
     props: {
-      timelineEvent: res[0]
+      timelineEvent: res[0],
     },
     revalidate: 5,
   }
 }
 
+// const FALLBACK_EVENT: TimelineEventT = {
+//   title: 'Timeline Event',
+//   slug: '',
+//   type: 'technology',
+//   date: '2000-01-01',
+//   place: 'Prague, Czechia',
+//   tags: [],
+//   shortText: {} as ContentfulRichText,
+//   longText: {
+//     nodeType: 'document',
+//     data: {},
+//     content: [
+//       {
+//         nodeType: 'paragraph',
+//         data: {},
+//         content: [
+//           {
+//             nodeType: 'text',
+//             data: {},
+//             marks: [],
+//             value: 'The event is loading...'
+//           },
+//         ],
+//       },
+//     ],
+//   } as ContentfulRichText,
+// }
+
 type TimelineEventProps = {
-  timelineEvent: TimelineEventT;
+  timelineEvent: TimelineEventT
 }
 
 const TimelineEvent: FunctionComponent<TimelineEventProps> = ({ timelineEvent }) => {
+  if (!timelineEvent) {
+    return (
+      <div>
+        Loading...
+      </div>
+    )
+  }
+
   const { title, longText } = timelineEvent
 
   return (
