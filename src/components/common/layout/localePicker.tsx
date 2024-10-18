@@ -31,7 +31,7 @@ const LocalePicker: FunctionComponent = () => {
             <Link
               key={l}
               className={styles.option}
-              href={pathname}
+              href={pathname ?? ''}
               locale={l}
               onClick={() => setOpened(false)}
             >
