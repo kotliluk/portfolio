@@ -4,30 +4,40 @@ import { FunctionComponent } from 'react'
 
 import styles from './index.module.scss'
 import InfoBarCard from '../infoBar'
+import YearCard, { YearInfo } from './yearCard'
+import { EventTypePickerValue } from '../eventTypePicker'
 import { TimelineEvent } from '@/types/timelineEvent'
 
 
-type TimelineCardProps = {
-  timelineEvent: TimelineEvent;
+export type TimelineEventWithYearInfo = TimelineEvent & {
+  firstInYearFrom: YearInfo
 }
 
-const TimelineCard: FunctionComponent<TimelineCardProps> = ({ timelineEvent }) => {
-  const { slug, title, shortText } = timelineEvent
+type TimelineCardProps = {
+  timelineEvent: TimelineEventWithYearInfo
+  selectedEventType: EventTypePickerValue
+}
+
+const TimelineCard: FunctionComponent<TimelineCardProps> = ({ timelineEvent, selectedEventType }) => {
+  const { slug, title, shortText, firstInYearFrom } = timelineEvent
 
   return (
-    <Link id={slug} href={`/timeline/${slug}`} className={styles.card}>
-      <div>
-        <h2>
-          {title}
-        </h2>
+    <>
+      <YearCard yearInfo={firstInYearFrom} selectedEventType={selectedEventType} />
+      <Link id={slug} href={`/timeline/${slug}`} className={styles.card}>
+        <div>
+          <h2 className={styles.title}>
+            {title}
+          </h2>
 
-        <InfoBarCard timelineEvent={timelineEvent} />
+          <InfoBarCard timelineEvent={timelineEvent} />
 
-        <div className={styles.shortText}>
-          {documentToReactComponents(shortText)}
+          <div className={styles.shortText}>
+            {documentToReactComponents(shortText)}
+          </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </>
   )
 }
 

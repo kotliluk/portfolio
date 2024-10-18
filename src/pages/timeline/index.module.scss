@@ -1,6 +1,5 @@
 .body {
-  padding-top: 3rem;
-  padding-bottom: 50vh;
+  padding: 3rem 0 50vh 0;
 }
 
 .header {
@@ -8,4 +7,6 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
+
+  padding-bottom: 1rem;
 }

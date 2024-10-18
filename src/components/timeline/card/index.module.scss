@@ -2,13 +2,19 @@
   display: block;
 
   margin: 1rem 0;
-  padding: 0.5rem;
+  padding: 1rem 2rem;
 
   background-color: lightgrey;
 
   border-radius: 0.5rem;
 }
 
+.title {
+  margin: 1rem 0 0.5rem 0;
+}
+
 .shortText {
-  margin-top: 0.5rem;
+  p {
+    margin: 0.5rem 0;
+  }
 }
