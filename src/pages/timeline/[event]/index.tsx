@@ -35,7 +35,8 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   return {
     props: {
       timelineEvent: res[0]
-    }
+    },
+    revalidate: 5,
   }
 }
 
