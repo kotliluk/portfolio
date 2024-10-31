@@ -10,7 +10,7 @@ const Header: FunctionComponent = () => {
     <header className={styles.header}>
       <div className={styles.content}>
         <div className={styles.logo}>
-          Portfolio - Lukáš Kotlík
+          Lukáš Kotlík
         </div>
         <div className={styles.links}>
           <Link href="/">Home</Link>
