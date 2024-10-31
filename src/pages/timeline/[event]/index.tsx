@@ -1,9 +1,9 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import Image from 'next/image'
 import { FunctionComponent } from 'react'
 
 import styles from './index.module.scss'
+import FallbackImage from '@/components/common/fallbackImage'
 import Layout from '@/components/common/layout'
 import InfoBarCard from '@/components/timeline/infoBar'
 import { getEntries } from '@/logic/contentful'
@@ -115,9 +115,8 @@ const TimelineEvent: FunctionComponent<TimelineEventProps> = ({ notFound, timeli
       <div className={styles.body}>
         <div className={styles.header}>
           <div>
-            <Image
+            <FallbackImage
               className={styles.thumbnail}
-              alt=''
               src={thumbnail.url}
               width={100}
               height={100}
