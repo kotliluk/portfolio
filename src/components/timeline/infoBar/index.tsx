@@ -23,7 +23,7 @@ const InfoBarCard: FunctionComponent<InfoBarCardProps> = ({ timelineEvent }) => 
         <LocationIcon />
         <span>{place}</span>
       </div>
-      <span>
+      <span className={styles.tags}>
         {tags.map((tag) => (
           <span key={tag} className={styles.tag}>{`#${tag}`}</span>
         ))}
