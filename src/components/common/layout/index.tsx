@@ -20,7 +20,7 @@ const Layout: FunctionComponent<LayoutProps> = ({ title, exactTitle, metaDescrip
   return (
     <>
       <PageHead
-        title={title}
+        title={titleToUse}
         metaDescription={metaDescription ?? titleToUse}
       />
 
