@@ -7,7 +7,7 @@ import FallbackImage from '@/components/common/fallbackImage'
 import Layout from '@/components/common/layout'
 import InfoBarCard from '@/components/timeline/infoBar'
 import { getEntries } from '@/logic/contentful'
-import { placeholder } from '@/logic/utils/string'
+import { useTranslation } from '@/logic/hooks/useTranslation'
 import NotFoundPage from '@/pages/404'
 import { ContentfulRichText } from '@/types/contentful'
 import { Locale } from '@/types/locale'
@@ -96,11 +96,13 @@ type TimelineEventProps = {
 }
 
 const TimelineEvent: FunctionComponent<TimelineEventProps> = ({ notFound, timelineEvent }) => {
+  const { timelineEvent: t } = useTranslation()
+
   if (notFound) {
     return <NotFoundPage
       redirectTo='/timeline'
-      title='404: Event not found'
-      text={`Redirecting to the timeline in ${placeholder('countdown')} seconds...`}
+      title={t.notFoundTitle}
+      text={t.notFoundText}
     />
   }
 

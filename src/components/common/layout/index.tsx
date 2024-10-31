@@ -4,7 +4,7 @@ import Footer from './footer'
 import PageHead from './head'
 import Header from './header'
 import styles from './index.module.scss'
-import { DEFAULT_PAGE_TITLE } from '@/logic/constants'
+import { useTranslation } from '@/logic/hooks/useTranslation'
 
 
 type LayoutProps = {
@@ -15,7 +15,9 @@ type LayoutProps = {
 }
 
 const Layout: FunctionComponent<LayoutProps> = ({ title, exactTitle, metaDescription, children }) => {
-  const titleToUse = exactTitle ? title : `${DEFAULT_PAGE_TITLE} | ${title}`
+  const { common: t } = useTranslation()
+
+  const titleToUse = exactTitle ? title : `${t.pageTitle} | ${title}`
 
   return (
     <>

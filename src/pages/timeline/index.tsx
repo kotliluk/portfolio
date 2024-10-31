@@ -7,6 +7,7 @@ import TimelineCard, { TimelineEventWithYearInfo } from '@/components/timeline/c
 import { YearInfo } from '@/components/timeline/card/yearCard'
 import EventTypePicker, { EventTypePickerValue } from '@/components/timeline/eventTypePicker'
 import { getEntries } from '@/logic/contentful'
+import { useTranslation } from '@/logic/hooks/useTranslation'
 import { Locale } from '@/types/locale'
 import { TimelineEvent, parseTimelineEvent } from '@/types/timelineEvent'
 
@@ -62,6 +63,8 @@ type TimelineProps = {
 const Timeline: FunctionComponent<TimelineProps> = ({ timelineEvents }: TimelineProps) => {
   const [selectedEventType, setSelectedEventType] = useState<EventTypePickerValue>('all')
 
+  const { timeline: t } = useTranslation()
+
   const filteredEvents = useMemo(() => {
     if (selectedEventType === 'all') {
       return timelineEvents
@@ -74,7 +77,7 @@ const Timeline: FunctionComponent<TimelineProps> = ({ timelineEvents }: Timeline
       <div className={styles.body}>
         <div className={styles.header}>
           <h1>
-            Timeline
+            {t.title}
           </h1>
           <EventTypePicker selectedType={selectedEventType} onSelect={setSelectedEventType} />
         </div>

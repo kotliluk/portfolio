@@ -3,9 +3,12 @@ import { FunctionComponent } from 'react'
 
 import styles from './header.module.scss'
 import LocalePicker from './localePicker'
+import { useTranslation } from '@/logic/hooks/useTranslation'
 
 
 const Header: FunctionComponent = () => {
+  const { common: { navigation: t } } = useTranslation()
+
   return (
     <header className={styles.header}>
       <div className={styles.content}>
@@ -13,9 +16,9 @@ const Header: FunctionComponent = () => {
           Lukáš Kotlík
         </div>
         <div className={styles.links}>
-          <Link href="/">Home</Link>
-          <Link href="/timeline">Timeline</Link>
-          <Link href="/about">About</Link>
+          <Link href="/">{t.home}</Link>
+          <Link href="/timeline">{t.timeline}</Link>
+          <Link href="/about">{t.about}</Link>
           <LocalePicker />
         </div>
       </div>
