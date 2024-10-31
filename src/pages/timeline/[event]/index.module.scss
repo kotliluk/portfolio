@@ -2,6 +2,17 @@
   padding-top: 3rem;
 }
 
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.thumbnail {
+  border-radius: 0.5rem;
+}
+
 .longText {
   margin-top: 2rem;
   

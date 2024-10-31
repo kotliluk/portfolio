@@ -1,4 +1,5 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
+import Image from 'next/image'
 import Link from 'next/link'
 import { FunctionComponent } from 'react'
 
@@ -19,12 +20,25 @@ type TimelineCardProps = {
 }
 
 const TimelineCard: FunctionComponent<TimelineCardProps> = ({ timelineEvent, selectedEventType }) => {
-  const { slug, title, shortText, firstInYearFrom } = timelineEvent
+  const { slug, title, shortText, firstInYearFrom, type, thumbnail } = timelineEvent
 
   return (
     <>
       <YearCard yearInfo={firstInYearFrom} selectedEventType={selectedEventType} />
-      <Link id={slug} href={`/timeline/${slug}`} className={styles.card}>
+      <Link
+        id={slug}
+        href={`/timeline/${slug}`}
+        className={`${styles.card} ${styles[type]}`}
+      >
+        <div>
+          <Image
+            className={styles.thumbnail}
+            alt=''
+            src={thumbnail.url}
+            width={100}
+            height={100}
+          />
+        </div>
         <div>
           <h2 className={styles.title}>
             {title}

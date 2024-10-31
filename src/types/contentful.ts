@@ -15,16 +15,42 @@ export type WithSys<T> = T & SysExtra
 
 export type WithoutSys<T> = Omit<T, keyof SysExtra>
 
-export type FieldsParser<T> = (raw: unknown) => T
+export type FieldsParser<In, Out> = (raw: In) => WithoutSys<Out>
 
 export type ObjectParser<T> = (entry: ContentfulEntry) => T
 
-export const parseObject = <T> (entry: ContentfulEntry, fieldsParser: FieldsParser<WithoutSys<T>>): T => {
+export const parseObject = <In, Out> (entry: ContentfulEntry, fieldsParser: FieldsParser<In, Out>): Out => {
   return {
-    ...fieldsParser(entry.fields),
+    ...fieldsParser(entry.fields as In),
     id: entry.sys.id,
     locale: fromFull(entry.sys.locale as FullLocale),
-  } as T
+  } as Out
 }
 
 export type ContentfulRichText = Document
+
+export type ContentfulRawImage = {
+  fields: {
+    file: {
+      details: {
+        image: {
+          height: number,
+          width: number,
+        },
+      },
+      url: string,
+    },
+  },
+}
+
+export type ContentfulImage = {
+  height: number,
+  width: number,
+  url: string,
+}
+
+export const parseImage = (raw: ContentfulRawImage): ContentfulImage => ({
+  height: raw.fields.file.details.image.height,
+  width: raw.fields.file.details.image.width,
+  url: `https:${raw.fields.file.url}`,
+})

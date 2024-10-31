@@ -1,5 +1,6 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { GetStaticPaths, GetStaticProps } from 'next'
+import Image from 'next/image'
 import { FunctionComponent } from 'react'
 
 import styles from './index.module.scss'
@@ -78,6 +79,11 @@ const FALLBACK_EVENT: TimelineEventT = {
       },
     ],
   } as ContentfulRichText,
+  thumbnail: {
+    url: '',
+    width: 100,
+    height: 100,
+  },
 }
 
 type TimelineEventProps = {
@@ -89,16 +95,30 @@ const TimelineEvent: FunctionComponent<TimelineEventProps> = ({ timelineEvent })
     timelineEvent = FALLBACK_EVENT
   }
 
-  const { title, longText } = timelineEvent
+  const { title, longText, thumbnail } = timelineEvent
 
   return (
     <Layout title='Timeline'>
       <div className={styles.body}>
-        <h1>
-          {title}
-        </h1>
+        <div className={styles.header}>
+          <div>
+            <Image
+              className={styles.thumbnail}
+              alt=''
+              src={thumbnail.url}
+              width={100}
+              height={100}
+            />
+          </div>
 
-        <InfoBarCard timelineEvent={timelineEvent} />
+          <div>
+            <h1>
+              {title}
+            </h1>
+
+            <InfoBarCard timelineEvent={timelineEvent} />
+          </div>
+        </div>
 
         <div className={styles.longText}>
           {documentToReactComponents(longText)}

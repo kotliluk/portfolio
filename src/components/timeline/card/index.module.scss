@@ -1,16 +1,29 @@
 .card {
-  display: block;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
 
   margin: 1rem 0;
-  padding: 1rem 2rem;
+  padding: 0.5rem 2rem 0.5rem 1rem;
 
-  background-color: lightgrey;
+  border-radius: 1rem;
 
+  &.sport {
+    background: linear-gradient(150deg, #e66465, #7b7b85 70%, #7b7b85);
+  }
+  
+  &.technology {
+    background: linear-gradient(150deg, #6496e6, #7b7b85 70%, #7b7b85);
+  }
+}
+
+.thumbnail {
+  margin: 0.5rem 0 0.5rem 0;
   border-radius: 0.5rem;
 }
 
 .title {
-  margin: 1rem 0 0.5rem 0;
+  margin: 0.5rem 0;
 }
 
 .shortText {

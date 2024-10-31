@@ -5,6 +5,11 @@ const nextConfig = {
     locales: ['cs', 'en'],
     defaultLocale: 'cs',
   },
+  images: {
+    remotePatterns: [{
+      hostname: 'images.ctfassets.net',
+    }],
+  },
   webpack(config) {
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule) =>
