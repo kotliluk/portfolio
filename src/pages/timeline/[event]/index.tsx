@@ -7,6 +7,8 @@ import styles from './index.module.scss'
 import Layout from '@/components/common/layout'
 import InfoBarCard from '@/components/timeline/infoBar'
 import { getEntries } from '@/logic/contentful'
+import { placeholder } from '@/logic/utils/string'
+import NotFoundPage from '@/pages/404'
 import { ContentfulRichText } from '@/types/contentful'
 import { Locale } from '@/types/locale'
 import { TimelineEvent as TimelineEventT, parseTimelineEvent } from '@/types/timelineEvent'
@@ -36,15 +38,17 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 
   if (res.length === 0) {
     return {
-      redirect: {
-        destination: '/timeline',
-        permanent: false,
+      props: {
+        notFound: true,
+        timelineEvent: null,
       },
+      revalidate: 5,
     }
   }
 
   return {
     props: {
+      notFound: false,
       timelineEvent: res[0] ?? null,
     },
     revalidate: 5,
@@ -87,10 +91,19 @@ const FALLBACK_EVENT: TimelineEventT = {
 }
 
 type TimelineEventProps = {
+  notFound: boolean
   timelineEvent: TimelineEventT
 }
 
-const TimelineEvent: FunctionComponent<TimelineEventProps> = ({ timelineEvent }) => {
+const TimelineEvent: FunctionComponent<TimelineEventProps> = ({ notFound, timelineEvent }) => {
+  if (notFound) {
+    return <NotFoundPage
+      redirectTo='/timeline'
+      title='404: Event not found'
+      text={`Redirecting to the timeline in ${placeholder('countdown')} seconds...`}
+    />
+  }
+
   if (!timelineEvent) {
     timelineEvent = FALLBACK_EVENT
   }

@@ -3,12 +3,23 @@ import { FunctionComponent, useEffect, useState } from 'react'
 
 import styles from './404.module.scss'
 import Layout from '@/components/common/layout'
+import { placeholder, replacePlaceholders } from '@/logic/utils/string'
 
 
-const AUTO_REDIRECT_DELAY = 5 // in seconds
+type NotFoundPageProps = {
+  redirectTo?: string
+  redirectIn?: number
+  title?: string
+  text?: string // with countdown placeholder
+}
 
-const NotFoundPage: FunctionComponent = () => {
-  const [countdown, setCountdown] = useState(AUTO_REDIRECT_DELAY)
+const NotFoundPage: FunctionComponent<NotFoundPageProps> = ({
+  redirectTo = '/',
+  redirectIn = 5,
+  title = '404: Page not found',
+  text = `Redirecting to the homepage in ${placeholder('countdown')} seconds...`,
+}) => {
+  const [countdown, setCountdown] = useState(redirectIn)
   const router = useRouter()
 
   useEffect(() => {
@@ -23,15 +34,16 @@ const NotFoundPage: FunctionComponent = () => {
 
   useEffect(() => {
     if (countdown === 0) {
-      router.push('/')
+      setCountdown(-1)
+      router.push(redirectTo)
     }
-  }, [countdown])
+  }, [countdown, redirectTo])
 
   return (
     <Layout title='Not found'>
       <div className={styles.body}>
-        <h1>404: Page not found</h1>
-        <p>Redirecting to the homepage in {countdown} seconds...</p>
+        <h1>{title}</h1>
+        <p>{replacePlaceholders(text, { countdown: countdown > 0 ? countdown : 1 })}</p>
       </div>
     </Layout>
   )
