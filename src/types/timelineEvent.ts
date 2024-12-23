@@ -1,3 +1,6 @@
+import { useRouter } from 'next/router'
+import { useMemo } from 'react'
+
 import { ContentfulEntry, ContentfulImage, ContentfulRawImage, ContentfulRichText, ObjectParser, WithSys, parseImage, parseObject } from './contentful'
 import { DateString } from './date'
 
@@ -27,4 +30,22 @@ export const parseTimelineEvent: ObjectParser<TimelineEvent> = (entry: Contentfu
     ...raw,
     thumbnail: parseImage(raw.thumbnail),
   }))
+}
+
+export type EventTypePickerValue = TimelineEventType | 'all'
+
+export const useEventTypeQueryParam = () => {
+  const router = useRouter()
+
+  return useMemo(() => {
+    if (!router.query.events) {
+      return 'all'
+    }
+
+    if (router.query.events !== 'technology' && router.query.events !== 'sport') {
+      return 'all'
+    }
+
+    return router.query.events as EventTypePickerValue
+  }, [router.query.events])
 }

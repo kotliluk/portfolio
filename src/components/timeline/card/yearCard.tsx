@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 
-import { EventTypePickerValue } from '../eventTypePicker'
+import { EventTypePickerValue } from '@/types/timelineEvent'
 
 
 export type YearInfo = Record<EventTypePickerValue, boolean> & {

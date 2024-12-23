@@ -1,15 +1,15 @@
 import { GetStaticProps } from 'next'
-import { FunctionComponent, useMemo, useState } from 'react'
+import { FunctionComponent, useMemo } from 'react'
 
 import styles from './index.module.scss'
 import Layout from '@/components/common/layout'
 import TimelineCard, { TimelineEventWithYearInfo } from '@/components/timeline/card'
 import { YearInfo } from '@/components/timeline/card/yearCard'
-import EventTypePicker, { EventTypePickerValue } from '@/components/timeline/eventTypePicker'
+import EventTypePicker from '@/components/timeline/eventTypePicker'
 import { getEntries } from '@/logic/contentful'
 import { useTranslation } from '@/logic/hooks/useTranslation'
 import { Locale } from '@/types/locale'
-import { TimelineEvent, parseTimelineEvent } from '@/types/timelineEvent'
+import { EventTypePickerValue, TimelineEvent, parseTimelineEvent, useEventTypeQueryParam } from '@/types/timelineEvent'
 
 
 const yearInfo = (year: string, all: boolean): YearInfo => ({
@@ -61,7 +61,7 @@ type TimelineProps = {
 }
 
 const Timeline: FunctionComponent<TimelineProps> = ({ timelineEvents }: TimelineProps) => {
-  const [selectedEventType, setSelectedEventType] = useState<EventTypePickerValue>('all')
+  const selectedEventType = useEventTypeQueryParam()
 
   const { timeline: t } = useTranslation()
 
@@ -79,7 +79,7 @@ const Timeline: FunctionComponent<TimelineProps> = ({ timelineEvents }: Timeline
           <h1>
             {t.title}
           </h1>
-          <EventTypePicker selectedType={selectedEventType} onSelect={setSelectedEventType} />
+          <EventTypePicker />
         </div>
 
         {filteredEvents.map((event) => (
