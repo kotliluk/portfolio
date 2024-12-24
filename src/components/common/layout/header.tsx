@@ -17,6 +17,7 @@ const Header: FunctionComponent = () => {
         </div>
         <div className={styles.links}>
           <Link href="/">{t.home}</Link>
+          <Link href="/projects">{t.projects}</Link>
           <Link href="/timeline">{t.timeline}</Link>
           <Link href="/about">{t.about}</Link>
           <LocalePicker />

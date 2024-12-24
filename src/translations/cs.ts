@@ -7,6 +7,7 @@ export const cs: Translation = {
     pageTitle: 'Lukáš Kotlík',
     navigation: {
       home: 'Home',
+      projects: 'Projekty',
       timeline: 'Timeline',
       about: 'About',
     }
@@ -25,6 +26,9 @@ export const cs: Translation = {
   timelineEvent: {
     notFoundTitle: '404: Event nenalezen',
     notFoundText: `Přesměrování na timeline za ${placeholder('countdown')} vteřin...`,
+  },
+  projects: {
+    title: 'Projekty',
   },
   about: {
     title: 'About',

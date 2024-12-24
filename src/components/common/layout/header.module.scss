@@ -2,7 +2,7 @@
 
 
 .header {
-  background-color: $header-footer-color;
+  background-color: $grey;
 }
 
 .content {
@@ -26,4 +26,8 @@
   flex-direction: row;
   align-items: center;
   gap: 1rem;
+
+  a:hover {
+    text-decoration: underline;
+  }
 }

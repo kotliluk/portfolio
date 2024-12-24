@@ -1,0 +1,106 @@
+@import '@/styles/variables.scss';
+
+
+$signpost-radius: 4rem;
+
+.signpost {
+  position: relative;
+  z-index: 100;
+
+  text-align: center;
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2 * $signpost-radius;
+    height: 2 * $signpost-radius;
+    
+    border-radius: $signpost-radius;
+    font-weight: bold;
+    transition: background-color 1s;
+    transform: translateY($signpost-radius);
+
+    &.left {
+      background-color: $technology-blue;
+    }
+  
+    &.right {
+      background-color: $sport-red;
+    }
+  
+    &.no {
+      background-color: $grey;
+    }
+  }
+}
+
+.arrowWrapper {
+  height: 4rem + $signpost-radius;
+}
+
+.arrow.left {
+  background-color: $technology-blue;
+}
+
+.arrow.right {
+  background-color: $sport-red;
+}
+
+.arrow.no {
+  background-color: $grey;
+}
+
+.typeGroups {
+  width: 100%;
+  position: relative;
+  z-index: 100;
+  margin-bottom: 50vh;
+
+  display: flex;
+  flex-direction: row;
+
+  gap: 2rem;
+}
+
+.typeGroup {
+  flex: 1 1 0;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 1rem;
+  gap: 1rem;
+  text-align: center;
+  transform: scale(1);
+
+  border-radius: $border-radius;
+
+  &.technology {
+    background: $technology-blue;
+  }
+
+  &.sport {
+    background: $sport-red;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    transition: transform 1s;
+  }
+}
+
+.typeItem {
+  padding: 1rem;
+
+  border-radius: $border-radius-half;
+  background: rgba(255, 255, 255, 0.2);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  p {
+    margin: 1rem 0;
+  }
+}

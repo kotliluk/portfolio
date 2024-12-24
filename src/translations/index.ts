@@ -8,6 +8,7 @@ export type Translation = {
     pageTitle: string
     navigation: {
       home: string
+      projects: string
       timeline: string
       about: string
     }
@@ -26,6 +27,9 @@ export type Translation = {
   timelineEvent: {
     notFoundTitle: string
     notFoundText: string // with countdown placeholder
+  }
+  projects: {
+    title: string
   }
   about: {
     title: string

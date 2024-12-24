@@ -4,8 +4,8 @@ import Layout from '@/components/common/layout'
 import { useTranslation } from '@/logic/hooks/useTranslation'
 
 
-const About: FunctionComponent = () => {
-  const { about: t } = useTranslation()
+const Projects: FunctionComponent = () => {
+  const { projects: t } = useTranslation()
 
   return (
     <Layout title={t.title}>
@@ -14,4 +14,4 @@ const About: FunctionComponent = () => {
   )
 }
 
-export default About
+export default Projects

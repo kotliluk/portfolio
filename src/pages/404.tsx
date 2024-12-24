@@ -43,7 +43,7 @@ const NotFoundPage: FunctionComponent<NotFoundPageProps> = ({
   }, [countdown, redirectTo])
 
   return (
-    <Layout title='Not found'>
+    <Layout title={t.title}>
       <div className={styles.body}>
         <h1>{title ?? t.title}</h1>
         <p>{replacePlaceholders(text ?? t.text, { countdown: countdown > 0 ? countdown : 1 })}</p>

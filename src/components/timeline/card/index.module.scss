@@ -1,3 +1,6 @@
+@import '@/styles/variables.scss';
+
+
 .card {
   display: flex;
   flex-direction: row;
@@ -6,20 +9,20 @@
   margin: 1rem 0;
   padding: 0.5rem 2rem 0.5rem 1rem;
 
-  border-radius: 1rem;
+  border-radius: $border-radius;
 
   &.sport {
-    background: linear-gradient(150deg, #e66465, #7b7b85 70%, #7b7b85);
+    background: linear-gradient(150deg, $sport-red, $grey 70%, $grey);
   }
   
   &.technology {
-    background: linear-gradient(150deg, #6496e6, #7b7b85 70%, #7b7b85);
+    background: linear-gradient(150deg, $technology-blue, $grey 70%, $grey);
   }
 }
 
 .thumbnail {
-  margin: 0.5rem 0 0.5rem 0;
-  border-radius: 0.5rem;
+  margin: $border-radius-half 0 $border-radius-half 0;
+  border-radius: $border-radius-half;
 }
 
 .title {
