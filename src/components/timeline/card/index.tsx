@@ -6,8 +6,7 @@ import { FunctionComponent } from 'react'
 import styles from './index.module.scss'
 import InfoBarCard from '../infoBar'
 import YearCard, { YearInfo } from './yearCard'
-import { EventTypePickerValue } from '../eventTypePicker'
-import { TimelineEvent } from '@/types/timelineEvent'
+import { EventTypePickerValue, TimelineEvent } from '@/types/timelineEvent'
 
 
 export type TimelineEventWithYearInfo = TimelineEvent & {

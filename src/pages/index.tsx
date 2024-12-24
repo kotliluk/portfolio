@@ -45,6 +45,7 @@ export default function Home() {
             <p>Časová osa s událostmi týkajících se mého programátorského života a vzdělání.</p>
           </Link>
         </div>
+
         <div
           className={classNames(styles.typeGroup, styles.sport)}
           onMouseOver={() => setArrowDirection('right')}
