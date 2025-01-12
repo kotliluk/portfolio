@@ -2,13 +2,13 @@ import Image from 'next/image'
 import { FunctionComponent } from 'react'
 
 interface FallbackImageProps {
-  className: string
+  className?: string
   src: string
   width: number
   height: number
 }
 
-const FallbackImage: FunctionComponent<FallbackImageProps> = ({ className, src, width, height }) => {
+const FallbackImage: FunctionComponent<FallbackImageProps> = ({ className = '', src, width, height }) => {
   if (!src) {
     return (
       <div

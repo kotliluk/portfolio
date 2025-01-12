@@ -1,4 +1,3 @@
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { FunctionComponent } from 'react'
 
@@ -7,6 +6,7 @@ import FallbackImage from '@/components/common/fallbackImage'
 import Layout from '@/components/common/layout'
 import InfoBarCard from '@/components/timeline/infoBar'
 import { getEntries } from '@/logic/contentful'
+import { renderRichText } from '@/logic/contentful/renderRichText'
 import { useTranslation } from '@/logic/hooks/useTranslation'
 import NotFoundPage from '@/pages/404'
 import { ContentfulRichText } from '@/types/contentful'
@@ -135,7 +135,7 @@ const TimelineEvent: FunctionComponent<TimelineEventProps> = ({ notFound, timeli
         </div>
 
         <div className={styles.longText}>
-          {documentToReactComponents(longText)}
+          {renderRichText(longText, { image: { width: 640 }})}
         </div>
       </div>
     </Layout>
