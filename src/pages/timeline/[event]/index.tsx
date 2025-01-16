@@ -135,7 +135,7 @@ const TimelineEvent: FunctionComponent<TimelineEventProps> = ({ notFound, timeli
         </div>
 
         <div className={styles.longText}>
-          {renderRichText(longText, { image: { width: 640 }})}
+          {renderRichText(longText, { image: { max: 640 }})}
         </div>
       </div>
     </Layout>
