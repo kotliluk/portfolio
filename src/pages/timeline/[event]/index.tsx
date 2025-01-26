@@ -1,17 +1,17 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { FunctionComponent } from 'react'
+import { FunctionComponent, useCallback } from 'react'
 
 import styles from './index.module.scss'
 import FallbackImage from '@/components/common/fallbackImage'
 import Layout from '@/components/common/layout'
 import InfoBarCard from '@/components/timeline/infoBar'
-import { getEntries } from '@/logic/contentful'
+import { getAllLocalesEntries, getEntries } from '@/logic/contentful'
 import { renderRichText } from '@/logic/contentful/renderRichText'
 import { useTranslation } from '@/logic/hooks/useTranslation'
 import NotFoundPage from '@/pages/404'
 import { ContentfulRichText } from '@/types/contentful'
 import { Locale } from '@/types/locale'
-import { TimelineEvent as TimelineEventT, parseTimelineEvent } from '@/types/timelineEvent'
+import { TimelineEvent as TimelineEventT, TimelineEventLocaleSlugs, createTimelineEventLocaleSlugs, parseTimelineEvent } from '@/types/timelineEvent'
 
 
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
@@ -34,22 +34,27 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-  const res = await getEntries('timelineEvent', parseTimelineEvent, locale as Locale, { 'fields.slug': params?.event })
+  const event = await getEntries('timelineEvent', parseTimelineEvent, locale as Locale, { 'fields.slug': params?.event })
 
-  if (res.length === 0) {
+  if (event.length === 0) {
     return {
       props: {
         notFound: true,
         timelineEvent: null,
+        timelineEventLocaleSlugs: [],
       },
       revalidate: 5,
     }
   }
 
+  const allLocalesEvents = await getAllLocalesEntries('timelineEvent', parseTimelineEvent)
+  const timelineEventLocaleSlugs = createTimelineEventLocaleSlugs(allLocalesEvents)
+
   return {
     props: {
       notFound: false,
-      timelineEvent: res[0] ?? null,
+      timelineEvent: event[0] ?? null,
+      timelineEventLocaleSlugs,
     },
     revalidate: 5,
   }
@@ -93,10 +98,19 @@ const FALLBACK_EVENT: TimelineEventT = {
 type TimelineEventProps = {
   notFound: boolean
   timelineEvent: TimelineEventT
+  timelineEventLocaleSlugs: TimelineEventLocaleSlugs
 }
 
-const TimelineEvent: FunctionComponent<TimelineEventProps> = ({ notFound, timelineEvent }) => {
+const TimelineEvent: FunctionComponent<TimelineEventProps> = ({ notFound, timelineEvent, timelineEventLocaleSlugs }) => {
   const { timelineEvent: t } = useTranslation()
+
+  // rewrites the slug in URL when locale changes
+  const handleLocaleChange = useCallback((oldLocale: Locale, oldPathname: string, newLocale: Locale) => {
+    const pathnameParts = oldPathname.split('/')
+    const oldSlug = pathnameParts[pathnameParts.length - 1]
+    const newSlug = timelineEventLocaleSlugs.find((slugs) => slugs[oldLocale] === oldSlug)?.[newLocale]
+    return newSlug ?? oldSlug
+  }, [timelineEventLocaleSlugs])
 
   if (notFound) {
     return <NotFoundPage
@@ -113,7 +127,10 @@ const TimelineEvent: FunctionComponent<TimelineEventProps> = ({ notFound, timeli
   const { title, longText, thumbnail } = timelineEvent
 
   return (
-    <Layout title='Timeline'>
+    <Layout
+      title={`Timeline | ${title}`}
+      onLocaleChange={handleLocaleChange}
+    >
       <div className={styles.body}>
         <div className={styles.header}>
           <div>

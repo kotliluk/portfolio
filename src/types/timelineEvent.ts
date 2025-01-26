@@ -3,6 +3,7 @@ import { useMemo } from 'react'
 
 import { ContentfulEntry, ContentfulImage, ContentfulRawImage, ContentfulRichText, ObjectParser, WithSys, parseImage, parseObject } from './contentful'
 import { DateString } from './date'
+import { Locale } from './locale'
 
 
 export type TimelineEventType = 'sport' | 'technology'
@@ -48,4 +49,28 @@ export const useEventTypeQueryParam = () => {
 
     return router.query.events as EventTypePickerValue
   }, [router.query.events])
+}
+
+export type TimelineEventLocaleSlugs = Record<Locale, string>[]
+
+export const createTimelineEventLocaleSlugs = (allLocalesEvents: Record<Locale, TimelineEvent[]>): TimelineEventLocaleSlugs => {
+  const timelineEventLocaleSlugs = [] as TimelineEventLocaleSlugs
+
+  let isFirstLocale = true
+
+  for (const locale in allLocalesEvents) {
+    const localeEntries = allLocalesEvents[locale as Locale]
+    if (isFirstLocale) {
+      localeEntries.forEach((entry) => {
+        timelineEventLocaleSlugs.push({ [locale]: entry.slug } as Record<Locale, string>)
+      })
+    } else {
+      localeEntries.forEach((entry, index) => {
+        timelineEventLocaleSlugs[index][locale as Locale] = entry.slug
+      })
+    }
+    isFirstLocale = false
+  }
+
+  return timelineEventLocaleSlugs
 }

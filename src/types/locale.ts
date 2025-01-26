@@ -8,6 +8,8 @@ export const CS_LOCALE: Locale = 'cs'
 
 export const DEFAULT_LOCALE: Locale = 'cs'
 
+export const Locales: Locale[] = ['en', 'cs']
+
 // language+country locales used in contentful
 
 export type FullLocale = 'en-US' | 'cs'

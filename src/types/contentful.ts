@@ -19,7 +19,7 @@ export type FieldsParser<In, Out> = (raw: In) => WithoutSys<Out>
 
 export type ObjectParser<T> = (entry: ContentfulEntry) => T
 
-export const parseObject = <In, Out> (entry: ContentfulEntry, fieldsParser: FieldsParser<In, Out>): Out => {
+export const parseObject = <In, Out extends SysExtra> (entry: ContentfulEntry, fieldsParser: FieldsParser<In, Out>): Out => {
   return {
     ...fieldsParser(entry.fields as In),
     id: entry.sys.id,
