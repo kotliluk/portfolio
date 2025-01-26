@@ -108,7 +108,7 @@ const TimelineEvent: FunctionComponent<TimelineEventProps> = ({ notFound, timeli
   const handleLocaleChange = useCallback((oldLocale: Locale, oldPathname: string, newLocale: Locale) => {
     const pathnameParts = oldPathname.split('/')
     const oldSlug = pathnameParts[pathnameParts.length - 1]
-    const newSlug = timelineEventLocaleSlugs.find((slugs) => slugs[oldLocale] === oldSlug)?.[newLocale]
+    const newSlug = timelineEventLocaleSlugs?.find((slugs) => slugs[oldLocale] === oldSlug)?.[newLocale]
     return newSlug ?? oldSlug
   }, [timelineEventLocaleSlugs])
 
