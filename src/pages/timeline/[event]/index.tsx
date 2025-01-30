@@ -6,7 +6,7 @@ import FallbackImage from '@/components/common/fallbackImage'
 import Layout from '@/components/common/layout'
 import InfoBarCard from '@/components/timeline/infoBar'
 import { getAllLocalesEntries, getEntries } from '@/logic/contentful'
-import { renderRichText } from '@/logic/contentful/renderRichText'
+import { createSimpleRichText, renderRichText } from '@/logic/contentful/richText'
 import { useTranslation } from '@/logic/hooks/useTranslation'
 import NotFoundPage from '@/pages/404'
 import { ContentfulRichText } from '@/types/contentful'
@@ -70,24 +70,7 @@ const FALLBACK_EVENT: TimelineEventT = {
   place: 'Prague, Czechia',
   tags: [],
   shortText: {} as ContentfulRichText,
-  longText: {
-    nodeType: 'document',
-    data: {},
-    content: [
-      {
-        nodeType: 'paragraph',
-        data: {},
-        content: [
-          {
-            nodeType: 'text',
-            data: {},
-            marks: [],
-            value: 'The event is loading...'
-          },
-        ],
-      },
-    ],
-  } as ContentfulRichText,
+  longText: createSimpleRichText(['The event is loading...']),
   thumbnail: {
     url: '',
     width: 100,

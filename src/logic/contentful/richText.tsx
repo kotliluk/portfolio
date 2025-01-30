@@ -3,6 +3,27 @@ import { BLOCKS, Block, Document, Inline } from '@contentful/rich-text-types'
 import { ReactNode } from 'react'
 
 import FallbackImage from '@/components/common/fallbackImage'
+import { ContentfulRichText } from '@/types/contentful'
+
+
+export const createSimpleRichText = (paragraphs: string[]): ContentfulRichText => {
+  return {
+    nodeType: 'document',
+    data: {},
+    content: paragraphs.map((paragraph) => ({
+      nodeType: 'paragraph',
+      data: {},
+      content: [
+        {
+          nodeType: 'text',
+          data: {},
+          marks: [],
+          value: paragraph,
+        },
+      ],
+    })),
+  } as ContentfulRichText
+}
 
 type RenderRichTextOptions = {
   image?: {
