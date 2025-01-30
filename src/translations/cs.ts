@@ -43,6 +43,7 @@ export const cs: Translation = {
   },
   projects: {
     title: 'Projekty',
+    untilNow: 'do teď',
   },
   about: {
     title: 'About',

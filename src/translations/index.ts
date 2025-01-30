@@ -44,6 +44,7 @@ export type Translation = {
   }
   projects: {
     title: string
+    untilNow: string
   }
   about: {
     title: string

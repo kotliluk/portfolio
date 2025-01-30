@@ -1,17 +1,24 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
+import Image from 'next/image'
 import { FunctionComponent } from 'react'
 
 import styles from './index.module.scss'
 import CalendarIcon from '@/components/common/icons/calendar-16.svg'
 import ChainLinksIcon from '@/components/common/icons/chain-links-16.svg'
 import CubeIcon from '@/components/common/icons/cube-16.svg'
+import { classNames } from '@/logic/utils/css'
 import { MonthNumberMM, translateMonth } from '@/logic/utils/date'
+import { translations } from '@/translations'
 import { DateString } from '@/types/date'
 import { Locale } from '@/types/locale'
 import { Project } from '@/types/project'
 
 
-const formatDate = (date: DateString, locale: Locale): string => {
+const formatDate = (date: DateString | undefined, locale: Locale): string => {
+  if (!date) {
+    return translations[locale].projects.untilNow
+  }
+
   const [y, m] = (date as string).split('-')
   return `${translateMonth(m as MonthNumberMM, locale)} ${y}`
 }
@@ -21,16 +28,31 @@ type ProjectCardProps = {
 }
 
 const ProjectCard: FunctionComponent<ProjectCardProps> = ({ project }) => {
-  const { title, fromDate, toDate, stack, text, link, color, locale } = project
+  const {
+    title, fromDate, toDate, stack, text, link, thumbnail,
+    colorOne, colorTwo = '#7b7b85', colorText,
+    locale,
+  } = project
 
   return (
       <div
         className={styles.card}
-        style={{ background: `linear-gradient(150deg, ${color}, #7b7b85 70%, #7b7b85)` }}
+        style={{
+          color: colorText,
+          background: `linear-gradient(150deg, ${colorOne}, ${colorTwo} 70%, ${colorTwo})`
+        }}
       >
           <h2 className={styles.title}>
             {title}
           </h2>
+
+          <Image
+            className={styles.thumbnail}
+            alt=''
+            src={thumbnail.url}
+            width={300}
+            height={150}
+          />
 
           <p className={styles.withIcon}>
             <CalendarIcon />
@@ -38,13 +60,18 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = ({ project }) => {
           </p>
 
           <p className={styles.withIcon}>
-            <CubeIcon />
+            <CubeIcon stroke={colorText} />
             {stack.join(', ')}
           </p>
 
           {link && (
-            <a className={styles.withIcon} href={link} target='_blank' rel='noreferrer'>
-              <ChainLinksIcon />
+            <a
+              className={classNames(styles.withIcon, styles.link)}
+              href={link}
+              target='_blank'
+              rel='noreferrer'
+            >
+              <ChainLinksIcon fill={colorText} />
               {link}
             </a>
           )}

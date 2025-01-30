@@ -43,6 +43,7 @@ export const en: Translation = {
   },
   projects: {
     title: 'Projects',
+    untilNow: 'until now',
   },
   about: {
     title: 'About',

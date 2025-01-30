@@ -14,6 +14,12 @@ import { Locale } from '@/types/locale'
 import { TimelineEvent as TimelineEventT, TimelineEventLocaleSlugs, createTimelineEventLocaleSlugs, parseTimelineEvent } from '@/types/timelineEvent'
 
 
+type TimelineEventProps = {
+  notFound: boolean
+  timelineEvent: TimelineEventT | null
+  timelineEventLocaleSlugs: TimelineEventLocaleSlugs
+}
+
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const timelineEvents: TimelineEventT[] = []
 
@@ -33,7 +39,7 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
+export const getStaticProps: GetStaticProps<TimelineEventProps> = async ({ params, locale }) => {
   const event = await getEntries('timelineEvent', parseTimelineEvent, locale as Locale, { 'fields.slug': params?.event })
 
   if (event.length === 0) {
@@ -76,12 +82,6 @@ const FALLBACK_EVENT: TimelineEventT = {
     width: 100,
     height: 100,
   },
-}
-
-type TimelineEventProps = {
-  notFound: boolean
-  timelineEvent: TimelineEventT
-  timelineEventLocaleSlugs: TimelineEventLocaleSlugs
 }
 
 const TimelineEvent: FunctionComponent<TimelineEventProps> = ({ notFound, timelineEvent, timelineEventLocaleSlugs }) => {

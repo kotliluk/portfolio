@@ -4,12 +4,14 @@ import { DateString } from './date'
 export type BaseProject = {
   title: string
   fromDate: DateString
-  toDate: DateString
+  toDate?: DateString
   stack: string[]
   text: ContentfulRichText
   link?: string
-  thumbnail?: ContentfulImage
-  color: string
+  thumbnail: ContentfulImage
+  colorOne: string
+  colorTwo?: string
+  colorText: string
 }
 
 type RawProject = Omit<BaseProject, 'thumbnail'> & {

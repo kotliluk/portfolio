@@ -19,7 +19,11 @@ const yearInfo = (year: string, all: boolean): YearInfo => ({
   sport: false,
 })
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
+type TimelineProps = {
+  timelineEvents: TimelineEventWithYearInfo[],
+}
+
+export const getStaticProps: GetStaticProps<TimelineProps> = async ({ locale }) => {
   const parsedTimelineEvents = await getEntries<TimelineEvent>('timelineEvent', parseTimelineEvent, locale as Locale)
 
   parsedTimelineEvents.sort((a, b) => -(a.date as string).localeCompare(b.date as string))
@@ -56,11 +60,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   }
 }
 
-type TimelineProps = {
-  timelineEvents: TimelineEventWithYearInfo[],
-}
-
-const Timeline: FunctionComponent<TimelineProps> = ({ timelineEvents }: TimelineProps) => {
+const Timeline: FunctionComponent<TimelineProps> = ({ timelineEvents }) => {
   const selectedEventType = useEventTypeQueryParam()
 
   const { timeline: t } = useTranslation()
