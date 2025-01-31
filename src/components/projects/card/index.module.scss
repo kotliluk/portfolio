@@ -23,6 +23,7 @@ $card-size: 390px;
   margin: $border-radius-half 0 $border-radius-half 0;
   border-radius: $border-radius-half;
   align-self: center;
+  flex-shrink: 0;
 }
 
 .title {
