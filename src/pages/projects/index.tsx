@@ -17,6 +17,22 @@ type ProjectsProps = {
 export const getStaticProps: GetStaticProps<ProjectsProps> = async ({ locale }) => {
   const projects = await getEntries<Project>('project', parseProject, locale as Locale)
 
+  projects.sort((a, b) => {
+    if (a.toDate === b.toDate) {
+      return (a.fromDate as string).localeCompare(b.fromDate as string)
+    }
+
+    if (!a.toDate) {
+      return -1
+    }
+
+    if (!b.toDate) {
+      return 1
+    }
+
+    return -(a.toDate as string).localeCompare(b.toDate as string)
+  })
+
   return {
     props: {
       projects,
