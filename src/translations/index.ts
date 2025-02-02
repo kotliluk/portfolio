@@ -29,6 +29,22 @@ export type Translation = {
   }
   home: {
     title: string
+    programming: {
+      label: string
+      cards: {
+        title: string
+        text: string
+        link: string
+      }[]
+    }
+    sport: {
+      label: string
+      cards: {
+        title: string
+        text: string
+        link: string
+      }[]
+    }
   }
   timeline: {
     title: string

@@ -28,6 +28,31 @@ export const cs: Translation = {
   },
   home: {
     title: 'Home',
+    programming: {
+      label: 'Programování',
+      cards: [
+        {
+          title: 'Projekty',
+          text: 'Seznam mých programátorských projektů - soukromých i pracovních.',
+          link: '/projects',
+        },
+        {
+          title: 'Události',
+          text: 'Časová osa s událostmi týkajících se mého programátorského života a vzdělání.',
+          link: '/timeline?events=technology',
+        },
+      ]
+    },
+    sport: {
+      label: 'Sport',
+      cards: [
+        {
+          title: 'Události',
+          text: 'Časová osa s událostmi týkajících se mého sportovního života.',
+          link: '/timeline?events=sport',
+        },
+      ]
+    },
   },
   timeline: {
     title: 'Timeline',

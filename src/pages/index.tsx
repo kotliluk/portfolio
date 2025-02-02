@@ -35,15 +35,13 @@ export default function Home() {
           onMouseOver={() => setArrowDirection('left')}
           onMouseLeave={() => setArrowDirection('no')}
         >
-          <h2>Programování</h2>
-          <Link className={styles.typeItem} href='/projects'>
-            <h3>Projekty</h3>
-            <p>Seznam mých programátorských projektů - soukromých i pracovních.</p>
-          </Link>
-          <Link className={styles.typeItem} href='/timeline?events=technology'>
-            <h3>Události</h3>
-            <p>Časová osa s událostmi týkajících se mého programátorského života a vzdělání.</p>
-          </Link>
+          <h1>{t.programming.label}</h1>
+          {t.programming.cards.map((card, i) => (
+            <Link key={i} className={styles.typeItem} href={card.link}>
+              <h3>{card.title}</h3>
+              <p>{card.text}</p>
+            </Link>
+          ))}
         </div>
 
         <div
@@ -51,11 +49,13 @@ export default function Home() {
           onMouseOver={() => setArrowDirection('right')}
           onMouseLeave={() => setArrowDirection('no')}
         >
-          <h2>Sport</h2>
-          <Link className={styles.typeItem} href='/timeline?events=sport'>
-            <h3>Události</h3>
-            <p>Časová osa s událostmi týkajících se mého sportovního života.</p>
-          </Link>
+          <h1>{t.sport.label}</h1>
+          {t.sport.cards.map((card, i) => (
+            <Link key={i} className={styles.typeItem} href={card.link}>
+              <h3>{card.title}</h3>
+              <p>{card.text}</p>
+            </Link>
+          ))}
         </div>
       </div>
     </Layout>

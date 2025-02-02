@@ -28,6 +28,31 @@ export const en: Translation = {
   },
   home: {
     title: 'Home',
+    programming: {
+      label: 'Programming',
+      cards: [
+        {
+          title: 'Projects',
+          text: 'List of my programming projects - personal and commercial.',
+          link: '/projects',
+        },
+        {
+          title: 'Events',
+          text: 'Timeline with events from my programming and study life.',
+          link: '/timeline?events=technology',
+        },
+      ]
+    },
+    sport: {
+      label: 'Sport',
+      cards: [
+        {
+          title: 'Events',
+          text: 'Timeline with events from my sport life.',
+          link: '/timeline?events=sport',
+        },
+      ]
+    },
   },
   timeline: {
     title: 'Timeline',
