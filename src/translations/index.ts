@@ -29,6 +29,7 @@ export type Translation = {
   }
   home: {
     title: string
+    interestQuestion: string
     programming: {
       label: string
       cards: {

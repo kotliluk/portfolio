@@ -28,6 +28,7 @@ export const cs: Translation = {
   },
   home: {
     title: 'Home',
+    interestQuestion: 'Co Vás zajímá?',
     programming: {
       label: 'Programování',
       cards: [

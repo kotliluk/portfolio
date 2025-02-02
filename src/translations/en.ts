@@ -28,6 +28,7 @@ export const en: Translation = {
   },
   home: {
     title: 'Home',
+    interestQuestion: 'What are your interested in?',
     programming: {
       label: 'Programming',
       cards: [

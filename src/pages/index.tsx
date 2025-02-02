@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <Layout title={t.title}>
       <div className={styles.signpost}>
-        <span className={styles[arrowDirection]}>Co Vás zajímá?</span>
+        <span className={styles[arrowDirection]}>{t.interestQuestion}</span>
       </div>
 
       <div className={styles.arrowWrapper}>
